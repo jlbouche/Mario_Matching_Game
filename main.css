@@ -1,0 +1,47 @@
+html, * {
+    box-sizing: border-box;
+    text-align: center;
+}
+
+body, html {
+    height: 100%
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('https://cdn.hipwallpaper.com/m/75/51/UwCa18.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#start-game {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 20px;
+    color: #0066CC;
+    border: 1px solid grey;
+    border-radius: 10px;
+    outline: none;
+    position: relative;
+    margin-top: 100px;
+    cursor: pointer;
+}
+
+.deck .card {
+	height: 7.5rem;
+	width: 6rem;
+    margin: 10px; 
+    background-image: url('https://images-na.ssl-images-amazon.com/images/I/61d-Cs6AW%2BL._SL1226_.jpg');
+    background-size: 100px 120px;
+	font-size: 0;
+	color: #ffffff;
+	border-radius: 5px;
+	cursor: pointer;
+	display: inline-block;
+	justify-content: center;
+	align-items: center;
+    box-shadow: 2px 2px 2px 0 #141414;
+}
