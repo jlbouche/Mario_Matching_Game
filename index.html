@@ -3,20 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/089a76b362.js" crossorigin="anonymous"></script>
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Mario Matching Game</title>
+  <title>Mario Memory Game</title>
   <link rel="stylesheet" href="main.css">
   <script defer src="main.js"></script>
 </head>
   <body>
-      <h1><img src="https://fontmeme.com/permalink/201030/899763f510213ecab2463412f6689638.png"border="0"></h1>
-      <h2>Match the cards to win!</h2>
-      <h1 id = 'player-lives'></h1>
-        <ul class='deck' id='card-deck'>
-            <li class='card' type='mario'></li>
-            <li class='card' type='mario2'></li>
-            <li class='card' type='luigi'></li>
-            <li class='card' type='luigi2'></li>
+    <div class='container'>
+      <h1><img src="https://fontmeme.com/permalink/201104/664fd1545724a0f2c3cd37fa694ce1f3.png"border="0"></h1>
+      <section class ='lives'>
+          <ul class='hearts'>
+              <li><i class='fas fa-heart'></i></li>
+              <li><i class='fas fa-heart'></i></li>
+              <li><i class='fas fa-heart'></i></li>
+          </ul>
+          <span class='livesLeft'>3 Lives</span>
+      </section>
+      <ul class='deck' id='card-deck'>
+          <li class='card' type='mario-castle'>
+              <i class='fab fa-fort-awesome'></i>
+            </li>
+            <li class='card' type='victory-flag'>
+                <i class='fab fa-font-awesome-flag'></i>
+            </li>
+            <li class='card' type='boo'>
+                <i class='fab fa-snapchat-ghost'></i>
+            </li>
+            <li class = 'card' type ='blooper'>
+                <i class='fab fa-octopus-deploy'></i>
+            </li>
+            <br>
+            <li class='card' type='mario-castle'>
+                <i class='fab fa-fort-awesome'></i>
+            </li>
+            <li class='card' type='victory-flag'>
+                <i class='fab fa-font-awesome-flag'></i>
+            </li>
+            <li class='card' type='boo'>
+                <i class='fab fa-snapchat-ghost'></i>
+            </li>
+            <li class = 'card' type ='blooper'>
+                <i class='fab fa-octopus-deploy'></i>
+            </li>
+        </ul>
       <button id = 'start-game'>Start a New Game</button>
+    </div>
   </body>
 </html>
