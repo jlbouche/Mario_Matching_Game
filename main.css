@@ -63,18 +63,26 @@ body {
     box-shadow: 2px 2px 2px 0 #141414;
 }
 
-.deck .card.open {
+.deck .card.openedCard {
+    height: 7.5rem;
+	width: 6rem;
+    margin: 10px;
+    color: white;
+    border-radius: 5px;
+	cursor: pointer;
+	display: inline-block;
+	align-content: center;
+    box-shadow: 2px 2px 2px 0 #141414;
+}
+
+.deck .card.matchedCard {
 
 }
 
-.deck .card.match {
+.deck .card.unmatchedCard {
 
 }
 
-.deck .card.unmatched {
-
-}
-
-.deck .card.disabled {
+.deck .card.disabledCard {
 
 }

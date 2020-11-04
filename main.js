@@ -7,42 +7,18 @@ const deck = document.getElementById('card-deck');
 /*----- app's state (variables) -----*/
 let wrongMoves = 0;
 let openedCards = [];
-let countWrongMoves = document.querySelector('.livesLeft')
-
 
 /*----- cached element references -----*/
 const playGame = document.getElementById('start-game');
 
 /*----- event listeners -----*/
 playGame.addEventListener('click', startGame);
-for (let i = 0; i < cards.length; i++){
-    cards[i].addEventListener('click', displayCard);
-}
-
 
 /*----- functions -----*/
-/*init();
-
-function init(e) {
-    render();
-    console.log('init is firing')
-}
-
-function render() {
-    console.log('render is firing');
-}*/
 
 function startGame() {
     startingAudio();
     cards = shuffleDeck(cards);
-    for (let i = 0; i < cards.length; i++) {
-        deck.innerHTML = '';
-        [].forEach.call(cards, function(addedCard) {
-            deck.appendChild(addedCard);
-        });
-        cards[i].classList.remove('show', 'open', 'match', 'disabled');
-    }
-    console.log('game has started')
 }
 
 function shuffleDeck(cardArray) {
@@ -55,7 +31,6 @@ function shuffleDeck(cardArray) {
         cardArray[randomIndex] = tempVal;
     }
     return cardArray;
-    console.log('deck is shuffled');
 }
 
 function startingAudio() {
@@ -74,10 +49,4 @@ function loserAudio() {
     let loserAudio = new Audio('https://themushroomkingdom.net/sounds/wav/smb/smb_mariodie.wav');
     loserAudio.loop = false;
     loserAudio.play();
-}
-
-function displayCard() {
-    this.classList.toggle('openedCard');
-    this.classList.toggle('showCard');
-    this.classList.toggle('disabledCard');
 }
