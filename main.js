@@ -95,18 +95,15 @@ function winLoss() {
 
 function startingAudio() {
     let gameStartAudio = new Audio('https://themushroomkingdom.net/sounds/wav/smb/smb_pipe.wav');
-    gameStartAudio.loop = false;
     gameStartAudio.play();
 }
 
 function winnerAudio() {
     let winnerAudio = new Audio('https://themushroomkingdom.net/sounds/wav/smb/smb_stage_clear.wav');
-    winnerAudio.loop = false;
     winnerAudio.play();
 }
 
 function loserAudio() {
     let loserAudio = new Audio('https://themushroomkingdom.net/sounds/wav/smb/smb_mariodie.wav');
-    loserAudio.loop = false;
     loserAudio.play();
 }

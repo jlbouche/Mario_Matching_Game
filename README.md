@@ -1,13 +1,13 @@
-# Mario Matching
+# Mario Memory
 
-## What is Mario Matching?
+## What is Mario Memory?
 
 ![Question mark](https://pics.me.me/thumb_2-mario-bros-question-mark-box-coin-candies-display-sour-54064620.png)
 
-### Mario matching is a take on the classic Memory game, designed to test your memory with a deck of cards to see if you can find each card's match.
+### Mario Memory is a Mario-themed take on the classic Memory game, designed to test your memory with a deck of cards.
 
 ## Instructions:
 
 ![Mario reading](https://i0.wp.com/www.infendo.com/wp-content/uploads/2012/01/paper_mario_reading_map_preview.png?resize=256%2C256)
 
-### Click on two face-down cards at a time to turn them face-up. If it's a match, they will stay face-up! Otherwise, they will return to face-down and you will have to guess again to find the correct match. Try to remember what card is where! You have 3 'lives' to make an incorrect guess. Good luck!
+### Click on two face-down cards at a time to reveal their symbol. When symbols match, the cards will remain face-up! If they don't, remember which symbol location--you have 5 'lives' before it's game-over. Good luck!
