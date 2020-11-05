@@ -1,9 +1,5 @@
 /*----- constants -----*/
 const maxLives = 5;
-const deck = document.getElementById('card-deck');
-const victoryPopUp = document.getElementById('victoryModal');
-const defeatPopUP = document.getElementById('defeatModal');
-const closeButton = document.getElementsByClassName("close")[0];
 
 /*----- app's state (variables) -----*/
 let wrongMoves = 0;
@@ -14,12 +10,19 @@ let matchedCards = document.getElementsByClassName('matchedCard');
 
 /*----- cached element references -----*/
 const playGame = document.getElementById('start-game');
+const deck = document.getElementById('card-deck');
+const victoryPopUp = document.getElementById('victoryModal');
+const defeatPopUP = document.getElementById('defeatModal');
+const closeButton = document.getElementsByClassName("close")[0];
 
 /*----- event listeners -----*/
 playGame.addEventListener('click', startGame);
 for (let i = 0; i < cards.length; i++) {
     card = cards[i];
     card.addEventListener('click', openCard);
+}
+closeButton.onclick = function() {
+    modal.style.display = 'none';
 }
 
 /*----- functions -----*/
