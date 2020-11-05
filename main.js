@@ -13,16 +13,12 @@ const playGame = document.getElementById('start-game');
 const deck = document.getElementById('card-deck');
 const victoryPopUp = document.getElementById('victoryModal');
 const defeatPopUP = document.getElementById('defeatModal');
-const closeButton = document.getElementsByClassName("close")[0];
 
 /*----- event listeners -----*/
 playGame.addEventListener('click', startGame);
 for (let i = 0; i < cards.length; i++) {
     card = cards[i];
     card.addEventListener('click', openCard);
-}
-closeButton.onclick = function() {
-    modal.style.display = 'none';
 }
 
 /*----- functions -----*/
@@ -65,11 +61,13 @@ function openCard() {
 
 function doCardsMatch() {
     if (openedCards[0].type === openedCards[1].type) {
+        matchedAudio();
         openedCards[0].classList.add('matchedCard');
         openedCards[1].classList.add('matchedCard');
         openedCards = [];
     } else {
         loseLife();
+        unmatchedAudio();
         wrongMoves++;
         openedCards[0].classList.add('unmatchedCard');
         openedCards[1].classList.add('unmatchedCard');
@@ -90,15 +88,31 @@ function winLoss() {
     if (wrongMoves === maxLives) {
         loserAudio();
         defeatPopUP.style.display = 'block';
+        setTimeout(function(){
+            defeatPopUP.style.display = 'none';
+        },4100);
     } else if (matchedCards.length === cards.length){
         winnerAudio();
         victoryPopUp.style.display = 'block';
-    }
+        setTimeout(function(){
+            victoryPopUp.style.display = 'none';
+        },4100);
+        }
 }
 
 function startingAudio() {
     let gameStartAudio = new Audio('https://themushroomkingdom.net/sounds/wav/smb/smb_pipe.wav');
     gameStartAudio.play();
+}
+
+function matchedAudio() {
+    let cardMatchAudio = new Audio('https://themushroomkingdom.net/sounds/wav/smb/smb_1-up.wav');
+    cardMatchAudio.play();
+}
+
+function unmatchedAudio() {
+    let cardUnmatchAudio = new Audio('https://themushroomkingdom.net/sounds/wav/smb/smb_bowserfalls.wav');
+    cardUnmatchAudio.play();
 }
 
 function winnerAudio() {
