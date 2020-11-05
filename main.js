@@ -1,13 +1,13 @@
 /*----- constants -----*/
-const maxLives = 3;
+const maxLives = 5;
 const deck = document.getElementById('card-deck');
 
 /*----- app's state (variables) -----*/
 let wrongMoves = 0;
 let openedCards = [];
-let matchedCards = document.getElementsByClassName('matchedCard');
 let card = document.getElementsByClassName('card');
 let cards = [...card];
+let matchedCards = document.getElementsByClassName('matchedCard');
 
 /*----- cached element references -----*/
 const playGame = document.getElementById('start-game');
@@ -31,6 +31,7 @@ function startGame() {
         Array.prototype.forEach.call(cards, function(shuffledCard) {
             deck.appendChild(shuffledCard);
         });
+        cards[i].classList.remove('openedCard', 'matchedCard', 'unmatchedCard', 'showCard');
     }
 }
 
@@ -55,6 +56,7 @@ function openCard() {
     let numofCardsOpened = openedCards.length;
     if (numofCardsOpened === 2) {
         doCardsMatch();
+        winLoss();
     }
 }
 
@@ -64,31 +66,35 @@ function doCardsMatch() {
         openedCards[1].classList.add('matchedCard');
         openedCards = [];
     } else {
+        loseLife();
+        wrongMoves++;
         openedCards[0].classList.add('unmatchedCard');
         openedCards[1].classList.add('unmatchedCard');
-        openedCards = [];
-        return wrongMoves = wrongMoves + 1;
+        setTimeout(function(){
+            openedCards[0].classList.remove('openedCard', 'unmatchedCard');
+            openedCards[1].classList.remove('openedCard', 'unmatchedCard');
+            openedCards = [];
+        },2100);
     }
+}
+
+function loseLife() {
+    let totalLives = document.getElementById('hearts');
+    totalLives.removeChild(totalLives.lastElementChild);
 }
 
 function winLoss() {
     if (wrongMoves === maxLives) {
         loserAudio();
-        alert('Sorry, you lost--try again?');
-    } else if (matchedCards === 8){
+        alert('Your princess is in another castle--try again?');
+    } else if (matchedCards.length === cards.length){
         winnerAudio();
         alert('Congratulations, you won!');
     }
 }
 
-function disable(){
-    Array.prototype.filter.call(cards, function(card){
-        card.classList.add('disabled');
-    });
-}
-
 function startingAudio() {
-    let gameStartAudio = new Audio('https://www.superluigibros.com/downloads/sounds/NES/SMB3/mp3/smb3-overworld.mp3');
+    let gameStartAudio = new Audio('https://themushroomkingdom.net/sounds/wav/smb/smb_pipe.wav');
     gameStartAudio.loop = false;
     gameStartAudio.play();
 }

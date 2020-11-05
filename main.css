@@ -22,7 +22,7 @@ body {
     background-size: cover;
 }
 
-.lives .hearts li {
+#hearts li{
     list-style: none;
     display: inline-block;
     text-align: center;
@@ -62,15 +62,20 @@ body {
     box-shadow: 2px 2px 2px 0 #141414;
 }
 
+.deck .showCard {
+    background: white;
+    font-size: 70px;
+}
+
 .deck .card.openedCard {
     background: white;
-    font-size: 100px;
+    font-size: 70px;
     color: black;
     text-align: center;
-	animation-name: flipInY;
 }
 
 .deck .card.matchedCard {
+    font-size: 70px;
 	background: green;
 }
 
