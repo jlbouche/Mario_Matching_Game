@@ -1,6 +1,9 @@
 /*----- constants -----*/
 const maxLives = 5;
 const deck = document.getElementById('card-deck');
+const victoryPopUp = document.getElementById('victoryModal');
+const defeatPopUP = document.getElementById('defeatModal');
+const closeButton = document.getElementsByClassName("close")[0];
 
 /*----- app's state (variables) -----*/
 let wrongMoves = 0;
@@ -16,7 +19,6 @@ const playGame = document.getElementById('start-game');
 playGame.addEventListener('click', startGame);
 for (let i = 0; i < cards.length; i++) {
     card = cards[i];
-    card.addEventListener('click', showCard);
     card.addEventListener('click', openCard);
 }
 
@@ -24,6 +26,7 @@ for (let i = 0; i < cards.length; i++) {
 
 function startGame() {
     openedCards = [];
+    wrongMoves = 0;
     startingAudio();
     cards = shuffleDeck(cards);
     for (let i = 0; i < cards.length; i++) {
@@ -31,7 +34,7 @@ function startGame() {
         Array.prototype.forEach.call(cards, function(shuffledCard) {
             deck.appendChild(shuffledCard);
         });
-        cards[i].classList.remove('openedCard', 'matchedCard', 'unmatchedCard', 'showCard');
+        cards[i].classList.remove('openedCard', 'matchedCard', 'unmatchedCard');
     }
 }
 
@@ -47,11 +50,8 @@ function shuffleDeck(cardArray) {
     return cardArray;
 }
 
-function showCard() {
-    this.classList.toggle('openedCard');
-}
-
 function openCard() {
+    this.classList.toggle('openedCard');
     openedCards.push(this);
     let numofCardsOpened = openedCards.length;
     if (numofCardsOpened === 2) {
@@ -74,7 +74,7 @@ function doCardsMatch() {
             openedCards[0].classList.remove('openedCard', 'unmatchedCard');
             openedCards[1].classList.remove('openedCard', 'unmatchedCard');
             openedCards = [];
-        },2100);
+        },1100);
     }
 }
 
@@ -86,10 +86,10 @@ function loseLife() {
 function winLoss() {
     if (wrongMoves === maxLives) {
         loserAudio();
-        alert('Your princess is in another castle--try again?');
+        defeatPopUP.style.display = 'block';
     } else if (matchedCards.length === cards.length){
         winnerAudio();
-        alert('Congratulations, you won!');
+        victoryPopUp.style.display = 'block';
     }
 }
 
