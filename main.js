@@ -1,36 +1,31 @@
-/*----- constants -----*/
 const maxLives = 5;
 
-/*----- app's state (variables) -----*/
 let wrongMoves = 0;
 let openedCards = [];
 let card = document.getElementsByClassName('card');
 let cards = [...card];
 let matchedCards = document.getElementsByClassName('matchedCard');
+let totalLives = document.getElementById('hearts');
 
-/*----- cached element references -----*/
 const playGame = document.getElementById('start-game');
 const deck = document.getElementById('card-deck');
 const victoryPopUp = document.getElementById('victoryModal');
 const defeatPopUP = document.getElementById('defeatModal');
 
-/*----- event listeners -----*/
 playGame.addEventListener('click', startGame);
 for (let i = 0; i < cards.length; i++) {
     card = cards[i];
     card.addEventListener('click', openCard);
 }
 
-/*----- functions -----*/
-
 function startGame() {
     openedCards = [];
     wrongMoves = 0;
-    startingAudio();
     cards = shuffleDeck(cards);
+    startingAudio();
     for (let i = 0; i < cards.length; i++) {
         deck.innerHTML = '';
-        Array.prototype.forEach.call(cards, function(shuffledCard) {
+        cards.forEach.call(cards, function(shuffledCard) {
             deck.appendChild(shuffledCard);
         });
         cards[i].classList.remove('openedCard', 'matchedCard', 'unmatchedCard');
@@ -61,27 +56,22 @@ function openCard() {
 
 function doCardsMatch() {
     if (openedCards[0].type === openedCards[1].type) {
-        matchedAudio();
         openedCards[0].classList.add('matchedCard');
         openedCards[1].classList.add('matchedCard');
+        matchedAudio();
         openedCards = [];
     } else {
-        loseLife();
-        unmatchedAudio();
+        let newTotalLives = totalLives.removeChild(totalLives.lastElementChild);
         wrongMoves++;
         openedCards[0].classList.add('unmatchedCard');
         openedCards[1].classList.add('unmatchedCard');
+        unmatchedAudio();
         setTimeout(function(){
             openedCards[0].classList.remove('openedCard', 'unmatchedCard');
             openedCards[1].classList.remove('openedCard', 'unmatchedCard');
             openedCards = [];
-        },1100);
+        },800);
     }
-}
-
-function loseLife() {
-    let totalLives = document.getElementById('hearts');
-    totalLives.removeChild(totalLives.lastElementChild);
 }
 
 function winLoss() {
@@ -90,13 +80,13 @@ function winLoss() {
         defeatPopUP.style.display = 'block';
         setTimeout(function(){
             defeatPopUP.style.display = 'none';
-        },4100);
+        },4000);
     } else if (matchedCards.length === cards.length){
         winnerAudio();
         victoryPopUp.style.display = 'block';
         setTimeout(function(){
             victoryPopUp.style.display = 'none';
-        },4100);
+        },5500);
         }
 }
 
