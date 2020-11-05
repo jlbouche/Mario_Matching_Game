@@ -1,24 +1,37 @@
 /*----- constants -----*/
 const maxLives = 3;
-const card = document.getElementsByClassName('card');
-let cards = [...card];
 const deck = document.getElementById('card-deck');
 
 /*----- app's state (variables) -----*/
 let wrongMoves = 0;
 let openedCards = [];
+let matchedCards = document.getElementsByClassName('matchedCard');
+let card = document.getElementsByClassName('card');
+let cards = [...card];
 
 /*----- cached element references -----*/
 const playGame = document.getElementById('start-game');
 
 /*----- event listeners -----*/
 playGame.addEventListener('click', startGame);
+for (let i = 0; i < cards.length; i++) {
+    card = cards[i];
+    card.addEventListener('click', showCard);
+    card.addEventListener('click', openCard);
+}
 
 /*----- functions -----*/
 
 function startGame() {
+    openedCards = [];
     startingAudio();
     cards = shuffleDeck(cards);
+    for (let i = 0; i < cards.length; i++) {
+        deck.innerHTML = '';
+        Array.prototype.forEach.call(cards, function(shuffledCard) {
+            deck.appendChild(shuffledCard);
+        });
+    }
 }
 
 function shuffleDeck(cardArray) {
@@ -31,6 +44,47 @@ function shuffleDeck(cardArray) {
         cardArray[randomIndex] = tempVal;
     }
     return cardArray;
+}
+
+function showCard() {
+    this.classList.toggle('openedCard');
+}
+
+function openCard() {
+    openedCards.push(this);
+    let numofCardsOpened = openedCards.length;
+    if (numofCardsOpened === 2) {
+        doCardsMatch();
+    }
+}
+
+function doCardsMatch() {
+    if (openedCards[0].type === openedCards[1].type) {
+        openedCards[0].classList.add('matchedCard');
+        openedCards[1].classList.add('matchedCard');
+        openedCards = [];
+    } else {
+        openedCards[0].classList.add('unmatchedCard');
+        openedCards[1].classList.add('unmatchedCard');
+        openedCards = [];
+        return wrongMoves = wrongMoves + 1;
+    }
+}
+
+function winLoss() {
+    if (wrongMoves === maxLives) {
+        loserAudio();
+        alert('Sorry, you lost--try again?');
+    } else if (matchedCards === 8){
+        winnerAudio();
+        alert('Congratulations, you won!');
+    }
+}
+
+function disable(){
+    Array.prototype.filter.call(cards, function(card){
+        card.classList.add('disabled');
+    });
 }
 
 function startingAudio() {
