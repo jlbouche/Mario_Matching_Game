@@ -7,18 +7,21 @@ let cards = [...card];
 let matchedCards = document.getElementsByClassName('matchedCard');
 let totalLives = document.getElementById('hearts');
 
-const playGame = document.getElementById('start-game');
+const playNewGame = document.getElementById('start-game');
 const deck = document.getElementById('card-deck');
 const victoryPopUp = document.getElementById('victoryModal');
 const defeatPopUP = document.getElementById('defeatModal');
 
-playGame.addEventListener('click', startGame);
+
+playNewGame.addEventListener('click', startNewGame);
 for (let i = 0; i < cards.length; i++) {
     card = cards[i];
     card.addEventListener('click', openCard);
 }
 
-function startGame() {
+init();
+
+function init() {
     openedCards = [];
     wrongMoves = 0;
     cards = shuffleDeck(cards);
@@ -30,6 +33,10 @@ function startGame() {
         });
         cards[i].classList.remove('openedCard', 'matchedCard', 'unmatchedCard');
     }
+}
+
+function startNewGame() {
+    window.location.reload();
 }
 
 function shuffleDeck(cardArray) {
